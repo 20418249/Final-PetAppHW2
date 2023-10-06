@@ -1,14 +1,60 @@
-﻿@model List<PetAppHW2.Models.Pet>
+﻿@model IEnumerable<PetAppHW2.Models.Pet>
 
 @{
     ViewData["Title"] = "ViewPets";
 }
 
-<h1>ViewPets</h1>
+<div class="container">
+    <h1>Pets</h1>
+    <div class="row" style="display:block;">
+        <div class="col-md-3" style="display:inline; float: left;">
+            <p>Type</p>
+            <select name="Type" id="TypeId" style="width:60%"></select>
+            @*populate with database*@
+        </div>
+        <div class="col-md-3" style="display:inline; float: left;">
+            <p>Breed</p>
+            <select name="Breed" id="BreedId" style="width:60%"></select>
+            @*populate with database*@
+        </div>
+        <div class="col-md-3" style="display:inline; float: left;">
+            <p>Location</p>
+            <select name="Location" id="LocationId" style="width:60%"></select>
+            @*populate with database*@
+        </div>
+        <div class="col-md-3" style="display:inline; float: left;">
+            <button type="submit" onclick="click(1)" value="Search" style="width:50%;">Search</button>
+            <button type="submit" onclick="click(2)" value="Clear" style="width:50%;">Clear</button>
+        </div>
+    </div>
 
-<div>
-    <h4>Pet</h4>
-    <hr />
-
-
+    <div class="row" style="display:inline-block;">
+        @foreach (var item in Model)
+        {
+            <div class="card col-lg-4 col-sm-12 col-xl-4 col-md-4" style="float:left; max-width:300px; width:50%; height: 500px; outline: solid black 1px; margin:3%;">
+                <img class="card-img-top" src="..." alt="Image of pet" src="" />
+                <p style="color:green"> </p>
+                <div>
+                    <h3 class="card-title" style="display:inline;">@item.User.name</h3>
+                    <p style="display:inline;">@item.Gender</p>
+                    <p>@item.name , Age @item.age, @item.weight Kg</p>
+                    <h6> Pet Story</h6>
+                    <p>Blah blah blah</p>
+                    <button href="#" class="btn btn-primary">View</button>
+                    <p>Posted by -Donor Name-</p>
+                </div>
+            </div>
+        }
+    </div>
 </div>
+
+
+@section Scripts
+{
+    <script>
+        function click(action)
+        {
+            $("#action").val(action);
+        }
+    </script>
+}
