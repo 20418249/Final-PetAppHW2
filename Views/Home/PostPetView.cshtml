@@ -1,0 +1,38 @@
+﻿@model List<PetAppHW2.Models.Pet>
+
+
+@{
+    ViewData["Title"] = "PostPetView";
+}
+<h4>Add a Pet</h4>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <p>Your Details</p>
+            <input />
+            <p>Phone Number</p>
+            <input />
+        </div>
+
+        <div class="col-3">
+            <p>Your Details</p>
+            <input />
+            <p>Phone Number</p>
+            <input />
+            <p>Breed</p>
+            <input />
+            <p>Location</p>
+            <input />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

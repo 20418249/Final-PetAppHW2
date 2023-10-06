@@ -57,6 +57,22 @@ namespace PetAppHW2.Controllers
             return View(pets);
         }
 
+        public async Task<IActionResult> PostPetView(Pet pet, PetBreed breed, Location location, Gender gender, User user)
+        {
+            List<Pet> pets = await _db.Pets.ToListAsync();
+            List<PetType> types = await _db.petTypes.ToListAsync();
+            List<PetBreed> breeds = await _db.petBreeds.ToListAsync();
+            List<Location> locations = await _db.locations.ToListAsync();
+            List<Gender> genders = await _db.genders.ToListAsync();
+
+            _db.Pets.Add(pet);
+            _db.petBreeds.Add(breed);
+            _db.locations.Add(location);
+            _db.genders.Add(gender);
+            _db.users.Add(user);
+
+            return View(pets);
+        }
 
         public IActionResult Privacy()
         {
