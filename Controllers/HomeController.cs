@@ -48,15 +48,12 @@ namespace PetAppHW2.Controllers
 
         public async Task<IActionResult> ViewPets(string petType = "", string petBreed = "", string Location = "", string action = "")
         {
-            List<Pet> pets = new List<Pet>();
-            if (action == "2" || action == "")
-            {
-                pets = await _db.Pets.ToListAsync();
-            }
-            else
-            {
-                pets = await _db.Pets.Where(x => x.PetType.description == petType && x.PetBreed.description == petBreed && x.Location.name == Location).ToListAsync();
-            }
+            List<Pet> pets = await _db.Pets.ToListAsync();
+            List<PetType> types = await _db.petTypes.ToListAsync();
+            List<PetBreed> breeds = await _db.petBreeds.ToListAsync();
+            List<Location> locations = await _db.locations.ToListAsync();
+            List<Gender> genders = await _db.genders.ToListAsync();
+
             return View(pets);
         }
 

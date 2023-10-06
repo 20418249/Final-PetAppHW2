@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PetAppHW2.Models.Pet>
+﻿@model List<PetAppHW2.Models.Pet>
 
 @{
     ViewData["Title"] = "ViewPets";
@@ -23,8 +23,8 @@
             @*populate with database*@
         </div>
         <div class="col-md-3" style="display:inline; float: left;">
-            <button type="submit" onclick="click(1)" value="Search" style="width:50%;">Search</button>
-            <button type="submit" onclick="click(2)" value="Clear" style="width:50%;">Clear</button>
+            <button class="btn-info" type="submit" onclick="click(1)" value="Search" style="width:50%; margin:1%;">Search</button>
+            <button class="btn-info" type="submit" onclick="click(2)" value="Clear" style="width:50%; margin:1%;">Clear</button>
         </div>
     </div>
 
@@ -33,15 +33,29 @@
         {
             <div class="card col-lg-4 col-sm-12 col-xl-4 col-md-4" style="float:left; max-width:300px; width:50%; height: 500px; outline: solid black 1px; margin:3%;">
                 <img class="card-img-top" src="..." alt="Image of pet" src="" />
-                <p style="color:green"> </p>
+                @if (item.userId != null)
+                {//Creates the Available or adopted text
+                    <p style="color:green"> Adopted </p>
+                }
+                else
+                {
+                    <p style="color:red"> Available </p>
+                }
                 <div>
-                    <h3 class="card-title" style="display:inline;">@item.User.name</h3>
-                    <p style="display:inline;">@item.Gender</p>
-                    <p>@item.name , Age @item.age, @item.weight Kg</p>
-                    <h6> Pet Story</h6>
-                    <p>Blah blah blah</p>
-                    <button href="#" class="btn btn-primary">View</button>
-                    <p>Posted by -Donor Name-</p>
+                    <h3 class="card-title" style="display:inline;">@item.name</h3>
+                    <p style="display:inline;">@item.Gender.description</p>
+                    <p>@item.Location.name , Age @item.age, @item.weight Kg</p>
+                    <h6> Pet Story </h6>
+                    <p>This is where the pet story should go</p>
+                    @if (item.userId != null)
+                    {//Creates the Available or adopted text
+                        <button href="#" class="btn btn-primary disabled" style="width:100%;">View</button>
+                    }
+                    else
+                    {
+                        <button href="#" class="btn btn-primary" style="width:100%;">View</button>
+                    }
+                    
                 </div>
             </div>
         }
