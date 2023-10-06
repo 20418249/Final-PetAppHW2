@@ -1,8 +1,50 @@
-﻿@{
+﻿@model List<PetAppHW2.Models.Pet>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Adopt Love,</h1>
+    <h1 class="display-4">foster happiness.</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <hr />
+    </div>
+    <div class="row" style="text-align:center;">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <div>
+                <p style="display:inline; font-size:20pt;">Pets Homed </p>
+                    <p style="display:inline; color:blueviolet; font-size:27pt;" class=""> @ViewBag.noAdopted </p> <!--Get noAdopted from the viewbag in the controller-->
+                <ul style="padding:10px; outline:solid black 2px; list-style-type:none;">
+                    @foreach (var item in Model) //loops through the list
+                    {
+                        var i = 0;//Adoption counter
+                        if (item.userId != null) //Checks if the dog was adopted
+                        {
+                            <li>@item.name was adopted by user: @item.userId </li>
+                            i++; //increment adopotion counter
+                        }            
+                    }
+                </ul>
+            </div>
+            <div>
+
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4"> 
+            <div>
+                <h3 style="color:blueviolet">What we do?</h3>
+                <p>With a focus on matching the right pet with the right family, RescuePet makes it easy to adopt love and foster happiness.</p>
+            </div>
+            <button class="bg-dark"><a class="text-light" style="text-decoration:none;" asp-area="" asp-controller="Home" asp-action="ViewPets">View Pets</a></button>
+        </div>
+    </div>
+    <div>
+        
+    </div>
 </div>
